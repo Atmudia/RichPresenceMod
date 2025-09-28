@@ -5,7 +5,7 @@ using Il2CppMonomiPark.SlimeRancher.World;
 namespace RichPresenceMod.Patches;
 
 
-[HarmonyPatch(typeof(PlayerZoneTracker), "OnEntered")]
+[HarmonyPatch(typeof(PlayerZoneTracker), nameof(PlayerZoneTracker.OnEntered))]
 public static class Patch_PlayerZoneTracker
 {
     public static void Prefix(ZoneDefinition zone)

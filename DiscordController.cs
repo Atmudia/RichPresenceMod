@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using Discord;
 using Il2Cpp;
 using Il2CppMonomiPark.SlimeRancher.UI.DateAndTime;
@@ -36,7 +37,17 @@ namespace RichPresenceMod
 
         public void Start()
         {
-            _discord = new Discord.Discord(applicationId, 1UL);
+            try
+            {
+                _discord = new Discord.Discord(applicationId, 1UL);
+
+            }
+            catch (Exception e)
+            {
+                string message = "Please report this exception to the main developer of the mod: " + e.ToString();
+                MelonLogger.Error(message);
+                Destroy(this);
+            }
         }
 
         public void Update()
@@ -76,7 +87,8 @@ namespace RichPresenceMod
                         DayDisplay.Update();
                         TimeDisplay.Update();
                         
-                        value.State = DayLocalized.GetLocalizedString() + " " + TimeLocalized.GetLocalizedString();
+                        value.State = EncodeUtf8(DayLocalized.GetLocalizedString() + " " + TimeLocalized.GetLocalizedString());
+
                         activityManager.UpdateActivity(value, delegate(Result result)
                         {
                             if (result > Result.Ok)
@@ -113,29 +125,28 @@ namespace RichPresenceMod
             {
                 _timeDirector = SRSingleton<SceneContext>.Instance.TimeDirector;
             }
-            string text = zone.ReferenceId + "_image";
+            string text = zone.RichPresenceId + "_image";
             Activity activity = new Activity
             {
-                Details = zone._localizedName.GetLocalizedString(),
+                Details = EncodeUtf8(zone._localizedName.GetLocalizedString()),
                 State = null,
                 Assets = new ActivityAssets
                 {
                     LargeImage = text,
                     LargeText = "Slime Rancher 2",
                     SmallText = "Rich Presence Mod",
-                    SmallImage = "logo"
+                    // SmallImage = "logo"
                 }
             };
             _activity = activity;
         }
-
         public void SetRichPresence()
         {
             ifZone = false;
             Activity activity = new Activity
             {
-                Details = "Main Menu",
-                State = "",
+                Details = EncodeUtf8("Main Menu"),
+                // State = "",
                 Assets = new ActivityAssets
                 {
                     LargeImage = "logo",
@@ -144,7 +155,29 @@ namespace RichPresenceMod
                     SmallImage = "logo"
                 }
             };
+            ;
             _activity = activity;
+        }
+        
+        public static byte[] EncodeUtf8(string input, int size = 128)
+        {
+            if (size <= 0)
+                throw new ArgumentException("Size must be positive");
+
+            byte[] buffer = new byte[size]; // fixed-size buffer
+            if (string.IsNullOrEmpty(input))
+                return buffer; // empty buffer (all zeros)
+
+            byte[] utf8Bytes = Encoding.UTF8.GetBytes(input);
+
+            // Copy as much as fits (reserve 1 byte for null terminator)
+            int count = Math.Min(utf8Bytes.Length, buffer.Length - 1);
+            Array.Copy(utf8Bytes, buffer, count);
+
+            // Null-terminate
+            buffer[count] = 0;
+
+            return buffer;
         }
 
         public long applicationId = 1049351538713309266L;
@@ -161,4 +194,5 @@ namespace RichPresenceMod
         public static DayDisplay DayDisplay;
 
     }
+    
 }

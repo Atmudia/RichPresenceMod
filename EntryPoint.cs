@@ -1,11 +1,12 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 using Il2CppInterop.Runtime;
 using Il2CppInterop.Runtime.Injection;
 using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(RichPresenceMod.EntryPoint), "RichPresenceMod", "1.0.3", "KomiksPL", "https://www.nexusmods.com/slimerancher2/mods/12")]
+[assembly: MelonInfo(typeof(RichPresenceMod.EntryPoint), "RichPresenceMod", "1.0.4", "Atmudia", "https://www.nexusmods.com/slimerancher2/mods/12")]
 
 namespace RichPresenceMod;
 

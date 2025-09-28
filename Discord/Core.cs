@@ -316,30 +316,25 @@ namespace Discord
     public partial struct Activity
     {
         public ActivityType Type;
-
         public Int64 ApplicationId;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public string Name;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 128)]
+        public byte[] Name;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public string State;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 128)]
+        public byte[] State;
 
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public string Details;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 128)]
+        public byte[] Details;
 
         public ActivityTimestamps Timestamps;
-
         public ActivityAssets Assets;
-
         public ActivityParty Party;
-
         public ActivitySecrets Secrets;
-
         public bool Instance;
-
         public UInt32 SupportedPlatforms;
     }
+
 
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
     public partial struct Presence
