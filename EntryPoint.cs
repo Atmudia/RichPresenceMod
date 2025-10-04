@@ -6,7 +6,7 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(RichPresenceMod.EntryPoint), "RichPresenceMod", "1.0.4", "Atmudia", "https://www.nexusmods.com/slimerancher2/mods/12")]
+[assembly: MelonInfo(typeof(RichPresenceMod.EntryPoint), "RichPresenceMod", "1.0.5", "Atmudia", "https://www.nexusmods.com/slimerancher2/mods/12")]
 
 namespace RichPresenceMod;
 
