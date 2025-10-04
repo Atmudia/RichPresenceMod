@@ -6,12 +6,14 @@ using MelonLoader;
 using MelonLoader.Utils;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(RichPresenceMod.EntryPoint), "RichPresenceMod", "1.0.4", "Atmudia", "https://www.nexusmods.com/slimerancher2/mods/12")]
+[assembly: MelonInfo(typeof(RichPresenceMod.EntryPoint), "RichPresenceMod", "1.0.5", "Atmudia", "https://www.nexusmods.com/slimerancher2/mods/12")]
 
 namespace RichPresenceMod;
 
 public class EntryPoint : MelonMod
 {
+    public static long startTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+
     [DllImport("kernel32", CharSet = CharSet.Ansi)]
     private static extern IntPtr LoadLibrary(string lpFileName);
 
