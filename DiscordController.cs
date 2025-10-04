@@ -130,6 +130,10 @@ namespace RichPresenceMod
             {
                 Details = EncodeUtf8(zone._localizedName.GetLocalizedString()),
                 State = null,
+                Timestamps =
+                {
+                    Start = EntryPoint.startTimestamp
+                },
                 Assets = new ActivityAssets
                 {
                     LargeImage = text,
@@ -147,6 +151,10 @@ namespace RichPresenceMod
             {
                 Details = EncodeUtf8("Main Menu"),
                 // State = "",
+                Timestamps =
+                {
+                    Start = EntryPoint.startTimestamp
+                },
                 Assets = new ActivityAssets
                 {
                     LargeImage = "logo",
@@ -158,7 +166,7 @@ namespace RichPresenceMod
             ;
             _activity = activity;
         }
-        
+
         public static byte[] EncodeUtf8(string input, int size = 128)
         {
             if (size <= 0)

@@ -20,30 +20,33 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="0Harmony">
-        <HintPath>/home/ati/.local/share/Steam/steamapps/common/Slime Rancher 2/\MelonLoader\net6\0Harmony.dll</HintPath>
-      </Reference>
+        <PackageReference Include="HarmonyX" Version="2.15.0" />
+        <PackageReference Include="Il2CppInterop.Runtime" Version="1.5.1" />
+        <PackageReference Include="LavaGang.MelonLoader" Version="0.7.1" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <LibFolder>..\..\..\..\SteamLibrary\steamapps\common\Slime Rancher 2\MelonLoader\Il2CppAssemblies</LibFolder>
+    </PropertyGroup>
+    <ItemGroup>
       <Reference Include="Assembly-CSharp">
-        <HintPath>/home/ati/.local/share/Steam/steamapps/common/Slime Rancher 2/\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppInterop.Common">
-        <HintPath>/home/ati/.local/share/Steam/steamapps/common/Slime Rancher 2/\MelonLoader\net6\Il2CppInterop.Common.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppInterop.Runtime">
-        <HintPath>/home/ati/.local/share/Steam/steamapps/common/Slime Rancher 2/\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+        <HintPath>$(LibFolder)\Assembly-CSharp.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppmscorlib">
-        <HintPath>/home/ati/.local/share/Steam/steamapps/common/Slime Rancher 2/\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+        <HintPath>$(LibFolder)\Il2Cppmscorlib.dll</HintPath>
       </Reference>
       <Reference Include="MelonLoader">
-        <HintPath>/home/ati/.local/share/Steam/steamapps/common/Slime Rancher 2/\MelonLoader\net6\MelonLoader.dll</HintPath>
+        <HintPath>$(LibFolder)\MelonLoader.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Localization">
-        <HintPath>/home/ati/.local/share/Steam/steamapps/common/Slime Rancher 2/\MelonLoader\Il2CppAssemblies\Unity.Localization.dll</HintPath>
+        <HintPath>$(LibFolder)\Unity.Localization.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.CoreModule">
-        <HintPath>/home/ati/.local/share/Steam/steamapps/common/Slime Rancher 2/\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
+        <HintPath>$(LibFolder)\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
+        <Reference Update="@(Reference)">
+            <Private>false</Private>
+        </Reference>
     </ItemGroup>
 
     <ItemGroup>

@@ -12,6 +12,8 @@ namespace RichPresenceMod;
 
 public class EntryPoint : MelonMod
 {
+    public static long startTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+
     [DllImport("kernel32", CharSet = CharSet.Ansi)]
     private static extern IntPtr LoadLibrary(string lpFileName);
 
